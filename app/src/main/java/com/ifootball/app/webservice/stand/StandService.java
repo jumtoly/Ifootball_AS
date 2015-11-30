@@ -33,7 +33,7 @@ public class StandService extends BaseService {
 
     public DynamicInfo getDynamicInfo(int pageIndex, int pageSize, int standType) throws IOException, ServiceException {
 
-        CurrentLocation location = new CurrentLocation(latitude, longitude, standType, pageIndex, pageSize);
+        CurrentLocation location = new CurrentLocation((float) 30.549754, (float) 104.045816, standType, pageIndex, pageSize);
         Uri.Builder b = Uri.parse(RESTFUL_SERVICE_HOST_WWW).buildUpon();
         b.path("/topic/query");
         String url = b.build().toString();
