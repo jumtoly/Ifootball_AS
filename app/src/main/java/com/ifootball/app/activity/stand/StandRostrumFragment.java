@@ -51,8 +51,6 @@ public class StandRostrumFragment extends BaseFragment {
         view = inflater.inflate(R.layout.activity_stand_rostrum, null);
         findView(view);
         isPrepared = true;
-       /* mListView.setReflashInterface(this);
-        mListView.setLoadingInterface(this);*/
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -92,7 +90,7 @@ public class StandRostrumFragment extends BaseFragment {
             }
         };
 
-        mAdapter = new Rostrum2DAdapter(getActivity(), mStandInfo);
+        mAdapter = new Rostrum2DAdapter(getActivity());
         mListView.setAdapter(mAdapter);
         CollectionStateObserver observer = new CollectionStateObserver();
         mAdapter.setVisible(true);
