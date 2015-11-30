@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gray">#989898</color>
+    <color name="blue">#2fa6de</color>
+    <color name="green">#82B348</color>
+    <color name="red">#C40000</color>
+    <color name="result_view">#b0000000</color>
+    <color name="viewfinder_mask">#7F000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="navigation_bar_background">#FFFFFF</color>
+    <color name="navigation_bar_item_text">#000000</color>
+    <color name="navigation_bar_item_text_pressed">#E62043</color>
+    <color name="navigation_bar_line">#C7C7C7</color>
+    <color name="common_divider_gray">#E5E5E5</color>
+    <color name="bg_color">#EEEEEE</color>
+    <color name="line_gray">#CFCFCF</color>
+    <color name="touch_gray_color">#5FCFCFCF</color>
+    <color name="product_photo_spec_trans">#80000000</color>
+
+    <!-- 看台顶部颜色 -->
+    <color name="top_bar_bg">#FFDF4F4F</color>
+    <!--背景颜色-->
+    <color name="bg">#FFF0F1F0</color>
+
+</resources>

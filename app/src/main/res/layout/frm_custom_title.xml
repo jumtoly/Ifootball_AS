@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:background="@android:color/transparent"
+        android:src="@mipmap/btn_back"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/activity_title"
+        style="@style/Custom_Title_Text_Style"
+        android:layout_gravity="center"
+        android:ellipsize="end"
+        android:singleLine="true"/>
+
+    <LinearLayout
+        android:id="@+id/btn_right_normal"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
+        android:layout_gravity="right|center_vertical"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+        <!-- android:background="@drawable/btn_bg_red_border" -->
+
+        <Button
+            android:id="@+id/btn_right_normal_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:textColor="@color/white"
+            android:textSize="15sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_right_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="right|center_vertical"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageButton
+            android:id="@+id/btn_right_icon_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:background="@android:color/transparent"
+            android:src="@mipmap/btn_back"/>
+    </LinearLayout>
+
+</merge>
