@@ -7,11 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.ifootball.app.R;
 import com.ifootball.app.adapter.stand.StandPage2DAdapter;
+import com.ifootball.app.base.BaseFragment;
 import com.ifootball.app.common.StandPageTypeEnum;
+import com.ifootball.app.entity.CurrentLocation;
 import com.ifootball.app.entity.HasCollection;
 import com.ifootball.app.entity.stand.DynamicInfo;
 import com.ifootball.app.entity.stand.StandInfo;
@@ -22,8 +25,9 @@ import com.ifootball.app.webservice.ServiceException;
 import com.ifootball.app.webservice.stand.StandService;
 
 import java.io.IOException;
+import java.util.List;
 
-public class StandNewsFragment extends Fragment {
+public class StandBestHeatFragment extends Fragment {
     private static final int pageSize = 10;
 
     private int pageIndex = 0;
@@ -57,14 +61,15 @@ public class StandNewsFragment extends Fragment {
         return view;
     }
 
-
     protected void getData() {
+
+
         mResolver = new CBCollectionResolver<StandInfo>() {
             @Override
             public HasCollection<StandInfo> query()
                     throws IOException, ServiceException {
 
-                mDynamicInfo = new StandService().getDynamicInfo(pageIndex, pageSize, StandPageTypeEnum.NEWS.getPageType());
+                mDynamicInfo = new StandService().getDynamicInfo(pageIndex, pageSize, StandPageTypeEnum.BESTHEAT.getPageType());
 
                 if (mDynamicInfo != null
                         && mDynamicInfo.getList() != null
@@ -84,6 +89,7 @@ public class StandNewsFragment extends Fragment {
         observer.setAdapters(mAdapter);
         mAdapter.startQuery(mResolver);
         mListView.setOnScrollListener(new MyDecoratedAdapter.ListScrollListener(mAdapter, mResolver));
+
     }
 
 
@@ -98,7 +104,8 @@ public class StandNewsFragment extends Fragment {
     public void onPause() {
         super.onPause();
         pageIndex = 0;
-        Log.i("TEST", "NEWS");
+        Log.i("TEST","BESTHEAT");
     }
+
 
 }

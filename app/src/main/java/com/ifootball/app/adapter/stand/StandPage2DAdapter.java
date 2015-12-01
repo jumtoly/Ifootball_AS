@@ -32,7 +32,7 @@ import com.ifootball.app.util.ImageLoaderUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Rostrum2DAdapter extends MyDecoratedAdapter<StandInfo> {
+public class StandPage2DAdapter extends MyDecoratedAdapter<StandInfo> {
 
     public static final String SIGN_ROSTRUM_POSITION = "sign_rostrum_position";
     public static final String SIGN_ROSTRUM_BUNDLE = "sign_rostrum_bundle";
@@ -45,19 +45,13 @@ public class Rostrum2DAdapter extends MyDecoratedAdapter<StandInfo> {
     private EditText mEditText;
 
 
-    public Rostrum2DAdapter(Context currentContext) {
+    public StandPage2DAdapter(Context currentContext) {
         super(currentContext);
-
+        this.mContext = currentContext;
         this.mInflater = (LayoutInflater) currentContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public Rostrum2DAdapter(Context currentContext,
-                            List<StandInfo> list) {
-        super(currentContext, list);
-        this.mInflater = (LayoutInflater) currentContext
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    }
 
     @Override
     protected View newErrorView(Context context, ViewGroup parent) {
@@ -85,15 +79,15 @@ public class Rostrum2DAdapter extends MyDecoratedAdapter<StandInfo> {
         final int currentPosition = position;
         MyViewHolder holder;
         if (convertView == null || convertView.getTag() == null) {
-            holder = new MyViewHolder();
             convertView = mInflater.inflate(R.layout.itme_stand_rostrum, null);
+            holder = new MyViewHolder();
             initHoler(convertView, holder);
             convertView.setTag(holder);
         } else {
             holder = (MyViewHolder) convertView.getTag();
         }
         settingHoler(currentPosition, holder, position);
-        return null;
+        return convertView;
     }
 
 
@@ -158,7 +152,7 @@ public class Rostrum2DAdapter extends MyDecoratedAdapter<StandInfo> {
             holder.playVideo.setVisibility(View.GONE);
             holder.fl.setVisibility(View.GONE);
             holder.videoBgView.setVisibility(View.GONE);
-            holder.imageViews.setAdapter(new GridImage2DAdapter(mContext, mStandInfo.getPicUrls(), false));
+           /* holder.imageViews.setAdapter(new GridImage2DAdapter(mContext, mStandInfo.getPicUrls(), false));
             holder.imageViews.setOnItemClickListener(new OnItemClickListener() {
 
                 @Override
@@ -173,7 +167,7 @@ public class Rostrum2DAdapter extends MyDecoratedAdapter<StandInfo> {
                     mContext.startActivity(intent);
                     ((Activity) mContext).overridePendingTransition(R.anim.enter_scale, R.anim.out_scale);
                 }
-            });
+            });*/
         }
     }
 

@@ -39,8 +39,9 @@ public class GridImage2DAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return isDetails ? mBitmaps.size() : (mPics.size() <= 4 ? mPics.size()
-                : 4);
+        return mPics.size();
+        /*return isDetails ? mBitmaps.size() : (mPics.size() <= 4 ? mPics.size()
+                : 4);*/
 
     }
 
@@ -60,6 +61,7 @@ public class GridImage2DAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(
                     R.layout.itme_gridimage, null);
+
             vHodler.imageView = (ImageView) convertView
                     .findViewById(R.id.item_gridimage_iv);
             convertView.setTag(vHodler);

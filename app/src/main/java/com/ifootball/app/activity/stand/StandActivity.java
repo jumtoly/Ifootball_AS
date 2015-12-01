@@ -63,7 +63,7 @@ public class StandActivity extends BaseActivity implements OnClickListener,
         listViews.add(new StandRostrumFragment());
         listViews.add(new StandNearByFragment());
         listViews.add(new StandNewsFragment());
-        listViews.add(new StandBestHeatByFragment());
+        listViews.add(new StandBestHeatFragment());
         contentViewPager.setAdapter(new HomeViewPagerAdapter(
                 getSupportFragmentManager(), listViews));
         contentViewPager.setCurrentItem(ROSTRUM);

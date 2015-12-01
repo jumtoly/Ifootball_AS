@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp" >
 
-        <com.ifootball.app.activity.view.CircleImageView
+        <com.ifootball.app.framework.widget.CircleImageView
             android:id="@+id/item_rostrum_icon"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -98,7 +98,7 @@
         android:layout_marginLeft="10dp"
         android:text="5月8日黑脚队外战比赛照片，比分9:05月8日黑脚队外战比赛照片，比分9:0" />
 
-    <com.ifootball.app.activity.view.NoScrollBarGridView
+    <com.ifootball.app.framework.widget.release.NoScrollBarGridView
         android:id="@+id/item_rostrum_image_gridview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

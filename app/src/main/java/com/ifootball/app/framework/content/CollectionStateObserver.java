@@ -1,6 +1,9 @@
 package com.ifootball.app.framework.content;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.os.Build;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -14,236 +17,254 @@ import com.ifootball.app.R;
 
 /**
  * Computes the aggregate query state of one or more adapters.
- * <p>
+ * <p/>
  * Shows a loading banner when loading.
- * <p>
+ * <p/>
  * Shows a title bar spinner when reloading.
- * <p>
+ * <p/>
  * Shows an error message and retry button when there is an error.
  */
 public class CollectionStateObserver implements View.OnClickListener {
 
-	private static void setViewVisible(View view, boolean visible) {
-		if (view != null) {
-			int visibility = visible ? View.VISIBLE : View.GONE;
-			if (visibility != view.getVisibility()) {
-				view.setVisibility(visibility);
-			}
-		}
-	}
+    private static void setViewVisible(View view, boolean visible) {
+        if (view != null) {
+            int visibility = visible ? View.VISIBLE : View.GONE;
+            if (visibility != view.getVisibility()) {
+                view.setVisibility(visibility);
+            }
+        }
+    }
 
-	private static void setWindowIndeterminateProgressVisible(Window window,
-			boolean visible) {
-		int featureId = Window.FEATURE_INDETERMINATE_PROGRESS;
-		int value = visible ? Window.PROGRESS_VISIBILITY_ON
-				: Window.PROGRESS_VISIBILITY_OFF;
-		window.setFeatureInt(featureId, value);
-	}
+    private static void setWindowIndeterminateProgressVisible(Window window,
+                                                              boolean visible) {
+        int featureId = Window.FEATURE_INDETERMINATE_PROGRESS;
+        int value = visible ? Window.PROGRESS_VISIBILITY_ON
+                : Window.PROGRESS_VISIBILITY_OFF;
+        window.setFeatureInt(featureId, value);
+    }
 
-	private final Observer mObserver = new Observer();
+    private final Observer mObserver = new Observer();
 
-	private View mLoading;
+    private View mLoading;
 
-	private View mError;
+    private View mError;
 
-	private View mContent;
+    private View mContent;
 
-	private Window mWindow;
+    private Window mWindow;
 
-	private MyBaseAdapter[] mAdapters;
+    private MyBaseAdapter[] mAdapters;
 
-	@SuppressWarnings("rawtypes")
-	private PullToRefreshBase mPullToRefreshView;
+    @SuppressWarnings("rawtypes")
+    private PullToRefreshBase mPullToRefreshView;
 
-	public void setAdapters(MyBaseAdapter... adapters) {
-		if (mAdapters != null) {
-			for (MyBaseAdapter adapter : mAdapters) {
-				adapter.unregisterStateObserver(mObserver);
-			}
-		}
-		mAdapters = adapters;
-		if (mAdapters != null) {
-			for (MyBaseAdapter adapter : mAdapters) {
-				adapter.registerStateObserver(mObserver);
-			}
-		}
-	}
+    public void setAdapters(MyBaseAdapter... adapters) {
+        if (mAdapters != null) {
+            for (MyBaseAdapter adapter : mAdapters) {
+                adapter.unregisterStateObserver(mObserver);
+            }
+        }
+        mAdapters = adapters;
+        if (mAdapters != null) {
+            for (MyBaseAdapter adapter : mAdapters) {
+                adapter.registerStateObserver(mObserver);
+            }
+        }
+    }
 
-	public void setPullToRefreshView(
-			@SuppressWarnings("rawtypes") PullToRefreshBase pullToRefreshView) {
-		mPullToRefreshView = pullToRefreshView;
-	}
+    public void setPullToRefreshView(
+            @SuppressWarnings("rawtypes") PullToRefreshBase pullToRefreshView) {
+        mPullToRefreshView = pullToRefreshView;
+    }
 
-	public void setActivity(Activity activity) {
-		if (activity != null) {
-			mLoading = activity.findViewById(R.id.loading);
-			mError = activity.findViewById(R.id.error);
-			mContent = activity.findViewById(R.id.content);
-			mWindow = activity.getWindow();
-			mError.findViewById(R.id.retry).setOnClickListener(this);
-		} else {
-			mLoading = null;
-			mError = null;
-			mContent = null;
-			mWindow = null;
-			mError = null;
-		}
-	}
+    public void setActivity(Activity activity) {
+        if (activity != null) {
+            mLoading = activity.findViewById(R.id.loading);
+            mError = activity.findViewById(R.id.error);
+            mContent = activity.findViewById(R.id.content);
+            mWindow = activity.getWindow();
+            mError.findViewById(R.id.retry).setOnClickListener(this);
+        } else {
+            mLoading = null;
+            mError = null;
+            mContent = null;
+            mWindow = null;
+            mError = null;
+        }
+    }
 
-	public void setView(View view) {
-		if (view != null) {
-			mLoading = view.findViewById(R.id.loading);
-			mError = view.findViewById(R.id.error);
-			mContent = view.findViewById(R.id.content);
-			mError.findViewById(R.id.retry).setOnClickListener(this);
-		} else {
-			mLoading = null;
-			mError = null;
-			mContent = null;
-			mWindow = null;
-			mError = null;
-		}
-	}
+    public void setView(View view) {
+        if (view != null) {
+            mLoading = view.findViewById(R.id.loading);
+            mError = view.findViewById(R.id.error);
+            mContent = view.findViewById(R.id.content);
+            mError.findViewById(R.id.retry).setOnClickListener(this);
+        } else {
+            mLoading = null;
+            mError = null;
+            mContent = null;
+            mWindow = null;
+            mError = null;
+        }
+    }
 
-	public boolean isLoading() {
-		for (MyBaseAdapter adapter : mAdapters) {
-			if (adapter.isLoading()) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public void setFragmentView(View view, Fragment fragment) {
+        if (view != null) {
+            mLoading = view.findViewById(R.id.loading);
+            mError = view.findViewById(R.id.error);
+            mContent = view.findViewById(R.id.content);
+            mWindow = fragment.getActivity().getWindow();
+            mError.findViewById(R.id.retry).setOnClickListener(this);
+        } else {
+            mLoading = null;
+            mError = null;
+            mContent = null;
+            mWindow = null;
+            mError = null;
+        }
+    }
 
-	public boolean hasError() {
-		for (MyBaseAdapter adapter : mAdapters) {
-			if (adapter.hasError()) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public boolean isLoading() {
+        for (MyBaseAdapter adapter : mAdapters) {
+            if (adapter.isLoading()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	public boolean isEmpty() {
-		for (MyBaseAdapter adapter : mAdapters) {
-			if (0 != adapter.getCount()) {
-				return false;
-			}
-		}
-		return true;
-	}
+    public boolean hasError() {
+        for (MyBaseAdapter adapter : mAdapters) {
+            if (adapter.hasError()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	public void retry() {
-		for (MyBaseAdapter adapter : mAdapters) {
-			adapter.retry();
-		}
-	}
+    public boolean isEmpty() {
+        for (MyBaseAdapter adapter : mAdapters) {
+            if (0 != adapter.getCount()) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-	public void showLoading() {
-		hideAllViews();
+    public void retry() {
+        for (MyBaseAdapter adapter : mAdapters) {
+            adapter.retry();
+        }
+    }
 
-		setViewVisible(mLoading, true);
-	}
+    public void showLoading() {
+        hideAllViews();
 
-	public void showError() {
-		hideAllViews();
+        setViewVisible(mLoading, true);
+    }
 
-		setViewVisible(mError, true);
+    public void showError() {
+        hideAllViews();
 
-		if (mError instanceof ViewGroup) {
-			ViewGroup group = (ViewGroup) mError;
-			setErrorDescription(group);
-		}
-	}
+        setViewVisible(mError, true);
 
-	private void setErrorDescription(ViewGroup viewGroup) {
+        if (mError instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) mError;
+            setErrorDescription(group);
+        }
+    }
 
-		for (int i = 0; i < viewGroup.getChildCount(); i++) {
-			View child = viewGroup.getChildAt(i);
+    private void setErrorDescription(ViewGroup viewGroup) {
 
-			if (child instanceof TextView) {
-				if (child instanceof Button) {
-					for (MyBaseAdapter adapter : mAdapters) {
-						if (adapter.getException() instanceof BizException) {
+        for (int i = 0; i < viewGroup.getChildCount(); i++) {
+            View child = viewGroup.getChildAt(i);
 
-							child.setVisibility(View.GONE); // BizException?????锟斤拷???锟�??锟�??浠ワ拷????
-						}
-					}
-				} else {
-					for (MyBaseAdapter adapter : mAdapters) {
-						((TextView) child).setText(adapter
-								.getErrorDescription());
-					}
-				}
-			} else if (child instanceof ViewGroup) {
-				setErrorDescription((ViewGroup) child);
-			}
-		}
-	}
+            if (child instanceof TextView) {
+                if (child instanceof Button) {
+                    for (MyBaseAdapter adapter : mAdapters) {
+                        if (adapter.getException() instanceof BizException) {
 
-	public void showContent() {
-		hideAllViews();
+                            child.setVisibility(View.GONE); // BizException?????锟斤拷???锟�??锟�??浠ワ拷????
+                        }
+                    }
+                } else {
+                    for (MyBaseAdapter adapter : mAdapters) {
+                        ((TextView) child).setText(adapter
+                                .getErrorDescription());
+                    }
+                }
+            } else if (child instanceof ViewGroup) {
+                setErrorDescription((ViewGroup) child);
+            }
+        }
+    }
 
-		setViewVisible(mContent, true);
-	}
+    public void showContent() {
+        hideAllViews();
 
-	private void hideAllViews() {
-		setViewVisible(mLoading, false);
-		setViewVisible(mError, false);
-		setViewVisible(mContent, false);
-	}
+        setViewVisible(mContent, true);
+    }
 
-	private void updateViewsWhenLoading() {
-		if (mWindow != null) {
-			setWindowIndeterminateProgressVisible(mWindow, false);
-		}
+    private void hideAllViews() {
+        setViewVisible(mLoading, false);
+        setViewVisible(mError, false);
+        setViewVisible(mContent, false);
+    }
 
-		if (isEmpty()) {
-			showLoading();
-		} else {
-			showContent();
-			if (mWindow != null) {
-				setWindowIndeterminateProgressVisible(mWindow, true);
-			}
-		}
-	}
+    private void updateViewsWhenLoading() {
+        if (mWindow != null) {
+            setWindowIndeterminateProgressVisible(mWindow, false);
+        }
 
-	private void updateViewsWhenLoaded() {
-		if (mWindow != null) {
-			setWindowIndeterminateProgressVisible(mWindow, false);
-		}
-		if (isEmpty()) {
-			if (hasError()) {
-				showError();
-			} else {
-				showContent();
-			}
-		} else {
-			showContent();
-		}
-	}
+        if (isEmpty()) {
+            showLoading();
+        } else {
+            showContent();
+            if (mWindow != null) {
+                setWindowIndeterminateProgressVisible(mWindow, true);
+            }
+        }
+    }
 
-	@Override
-	public void onClick(View v) {
-		if (v.getId() == R.id.retry) {
-			retry();
-		}
-	}
+    private void updateViewsWhenLoaded() {
+        if (mWindow != null) {
+            setWindowIndeterminateProgressVisible(mWindow, false);
+        }
+        if (isEmpty()) {
+            if (hasError()) {
+                showError();
+            } else {
+                showContent();
+            }
+        } else {
+            showContent();
+        }
+    }
 
-	private class Observer implements StateObserver {
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.retry) {
+            retry();
+        }
+    }
 
-		@Override
-		public void onLoading() {
-			updateViewsWhenLoading();
-		}
+    private class Observer implements StateObserver {
 
-		@Override
-		public void onLoaded() {
-			updateViewsWhenLoaded();
+        @Override
+        public void onLoading() {
+            updateViewsWhenLoading();
+        }
 
-			if (mPullToRefreshView != null) {
-				mPullToRefreshView.onRefreshComplete();
-			}
-		}
+        @Override
+        public void onLoaded() {
+            updateViewsWhenLoaded();
 
-	};
+            if (mPullToRefreshView != null) {
+                mPullToRefreshView.onRefreshComplete();
+            }
+        }
+
+    }
+
+    ;
 }
