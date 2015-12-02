@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:id="@+id/venue_detail_main_layout"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <com.ifootball.app.framework.widget.TitleBarView
+            android:id="@+id/details_titlebar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/veneu_detail_ViewPager"
+                android:layout_width="fill_parent"
+                android:layout_height="420px"
+                android:flipInterval="1"/>
+
+            <RadioGroup
+                android:id="@+id/veneu_detail_indicators_radiogroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginBottom="40dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/venue_detail_name"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom"
+                android:background="#33000000"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"/>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/venue_detail_address"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ico_addressmark_venue"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:textColor="#363a3d"/>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#f0f0f0">
+        </View>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RatingBar
+                        android:id="@+id/venue_detail_rating"
+                        style="@style/venue_ratingbar_style"
+                        android:numStars="5"
+                        android:rating="5"/>
+
+                    <TextView
+                        android:id="@+id/venue_detail_score"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/venue_detail_category_container"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="#f0f0f0"/>
+
+            <ImageView
+                android:id="@+id/venue_detail_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:src="@mipmap/ico_call"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#f0f0f0"/>
+
+        <TextView
+            android:id="@+id/venue_detail_description"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="暂无介绍"/>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#f0f0f0"/>
+
+        <LinearLayout
+            android:id="@+id/venue_detail_tag_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#f0f0f0"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="踢过"
+                android:textColor="#e04e4f"
+                android:textSize="22sp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/venue_detail_player"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:text="34523人最近踢过">
+            </TextView>
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/venue_detail_player_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp">
+
+            <com.ifootball.app.activity.view.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/radius_redbg"
+                android:src="@mipmap/ico_footmarkon"/>
+
+            <com.ifootball.app.activity.view.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ico_footmark"/>
+
+            <com.ifootball.app.framework.widget.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/test_rostrum2"/>
+
+            <com.ifootball.app.framework.widget.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ico_more"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

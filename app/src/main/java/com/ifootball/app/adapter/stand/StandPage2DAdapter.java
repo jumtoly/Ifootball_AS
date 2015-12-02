@@ -2,7 +2,6 @@ package com.ifootball.app.adapter.stand;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
@@ -17,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,7 +23,6 @@ import android.widget.VideoView;
 
 import com.ifootball.app.R;
 import com.ifootball.app.activity.stand.SeeImageActivity;
-import com.ifootball.app.entity.stand.DynamicInfo;
 import com.ifootball.app.entity.stand.StandInfo;
 import com.ifootball.app.framework.adapter.MyDecoratedAdapter;
 import com.ifootball.app.framework.widget.CircleImageView;

@@ -2,7 +2,7 @@
 <resources>
 
     <!-- 应用程序级别或第三方组件的属性 -->
-    
+
     <item name="loading" type="id"/>
     <item name="error" type="id"/>
     <item name="retry" type="id"/>
@@ -10,12 +10,78 @@
     <item name="gridview" type="id"/>
     <item name="webview" type="id"/>
 
-    <item type="id" name="auto_focus"/>
-    <item type="id" name="decode"/>
-    <item type="id" name="decode_failed"/>
-    <item type="id" name="decode_succeeded"/>
-    <item type="id" name="quit"/>
-    <item type="id" name="restart_preview"/>
-    <item type="id" name="return_scan_result"/>
-    
+    <item name="auto_focus" type="id"/>
+    <item name="decode" type="id"/>
+    <item name="decode_failed" type="id"/>
+    <item name="decode_succeeded" type="id"/>
+    <item name="quit" type="id"/>
+    <item name="restart_preview" type="id"/>
+    <item name="return_scan_result" type="id"/>
+
+
+    <item name="background" type="id"/>
+    <item name="checkbox" type="id"/>
+    <item name="empty" type="id"/>
+    <item name="hint" type="id"/>
+    <item name="icon" type="id"/>
+    <item name="icon1" type="id"/>
+    <item name="icon2" type="id"/>
+    <item name="input" type="id"/>
+    <item name="left_icon" type="id"/>
+    <item name="list" type="id"/>
+    <item name="menu" type="id"/>
+    <item name="message" type="id"/>
+    <item name="primary" type="id"/>
+    <item name="progress" type="id"/>
+    <item name="right_icon" type="id"/>
+    <item name="summary" type="id"/>
+    <item name="selectedIcon" type="id"/>
+    <item name="tabcontent" type="id"/>
+    <item name="tabhost" type="id"/>
+    <item name="tabs" type="id"/>
+    <item name="text1" type="id"/>
+    <item name="text2" type="id"/>
+    <item name="title" type="id"/>
+    <item name="title_container" type="id"/>
+    <item name="toggle" type="id"/>
+    <item name="secondaryProgress" type="id"/>
+    <item name="lock_screen" type="id"/>
+    <item name="edit" type="id"/>
+    <item name="widget_frame" type="id"/>
+    <item name="button1" type="id"/>
+    <item name="button2" type="id"/>
+    <item name="button3" type="id"/>
+    <item name="extractArea" type="id"/>
+    <item name="candidatesArea" type="id"/>
+    <item name="inputArea" type="id"/>
+    <item name="inputExtractEditText" type="id"/>
+    <item name="selectAll" type="id"/>
+    <item name="cut" type="id"/>
+    <item name="copy" type="id"/>
+    <item name="paste" type="id"/>
+    <item name="copyUrl" type="id"/>
+    <item name="selectTextMode" type="id"/>
+    <item name="switchInputMethod" type="id"/>
+    <item name="keyboardView" type="id"/>
+    <item name="closeButton" type="id"/>
+    <item name="startSelectingText" type="id"/>
+    <item name="stopSelectingText" type="id"/>
+    <item name="addToDictionary" type="id"/>
+    <item name="accountPreferences" type="id"/>
+    <item name="smallIcon" type="id"/>
+    <item name="custom" type="id"/>
+    <item name="home" type="id"/>
+    <item name="fillInIntent" type="id"/>
+    <item name="rowTypeId" type="id"/>
+    <item name="up" type="id"/>
+    <item name="action_menu_divider" type="id"/>
+    <item name="icon_menu_presenter" type="id"/>
+    <item name="list_menu_presenter" type="id"/>
+    <item name="action_menu_presenter" type="id"/>
+    <item name="overflow_menu_presenter" type="id"/>
+    <item name="popup_submenu_presenter" type="id"/>
+    <item name="action_bar_spinner" type="id"/>
+    <item name="current_scene" type="id"/>
+    <item name="scene_layoutid_cache" type="id"/>
+
 </resources>

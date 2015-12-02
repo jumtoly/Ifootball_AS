@@ -1,20 +1,16 @@
 package com.ifootball.app.activity.stand;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.ifootball.app.R;
 import com.ifootball.app.adapter.stand.StandPage2DAdapter;
 import com.ifootball.app.base.BaseFragment;
 import com.ifootball.app.common.StandPageTypeEnum;
-import com.ifootball.app.entity.CurrentLocation;
 import com.ifootball.app.entity.HasCollection;
 import com.ifootball.app.entity.stand.DynamicInfo;
 import com.ifootball.app.entity.stand.StandInfo;
@@ -26,7 +22,6 @@ import com.ifootball.app.webservice.ServiceException;
 import com.ifootball.app.webservice.stand.StandService;
 
 import java.io.IOException;
-import java.util.List;
 
 public class StandBestHeatFragment extends BaseFragment {
     private static final int pageSize = 10;

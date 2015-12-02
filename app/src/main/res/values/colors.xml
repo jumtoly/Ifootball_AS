@@ -25,4 +25,6 @@
     <!--背景颜色-->
     <color name="bg">#FFF0F1F0</color>
 
+    <color name="selcet_no_text_bg">#FF3A3F43</color>
+
 </resources>

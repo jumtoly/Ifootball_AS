@@ -1,8 +1,6 @@
 package com.ifootball.app.activity.stand;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +14,6 @@ import com.ifootball.app.common.StandPageTypeEnum;
 import com.ifootball.app.entity.HasCollection;
 import com.ifootball.app.entity.stand.DynamicInfo;
 import com.ifootball.app.entity.stand.StandInfo;
-import com.ifootball.app.entity.stand.UserDetailsInfo;
 import com.ifootball.app.framework.adapter.MyDecoratedAdapter;
 import com.ifootball.app.framework.content.CBCollectionResolver;
 import com.ifootball.app.framework.content.CollectionStateObserver;

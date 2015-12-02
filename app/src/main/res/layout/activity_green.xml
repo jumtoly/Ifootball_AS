@@ -1,29 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg_color"
-    android:orientation="vertical" >
-
-    <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_color">
+    <LinearLayout
+        android:id="@+id/green_title_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/top_bar_bg"
-        android:gravity="center_vertical"
-        android:paddingRight="10dp" >
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="green" />
-    </RelativeLayout>
+            android:layout_margin="10dp"
+            android:background="@color/top_bar_bg">
+
+            <LinearLayout
+                android:id="@+id/title_left_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal"
+                android:src="@mipmap/ico_backspace">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/ico_address"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/frg_green_title_city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:src="@mipmap/ico_addressmark"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:text="绿茵"
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/frg_green_title_map_seclect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:drawableLeft="@mipmap/ico_map"
+                android:drawablePadding="3dp"
+                android:text="地图选择"
+                android:textColor="@color/white"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/area_tab"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/green_title_layout"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/frg_green_allarea"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/venue_filter_type_radiobutton_selector"
+            android:button="@null"
+            android:drawableRight="@drawable/green_bar_selector"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="全部区域"
+            android:textColor="@color/black_white_selector"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="@color/line_gray"/>
+
+        <RadioButton
+            android:id="@+id/frg_green_allcategory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/venue_filter_type_radiobutton_selector"
+            android:button="@null"
+            android:drawableRight="@drawable/green_bar_selector"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="全部类型"
+            android:textColor="@color/black_white_selector"/>
+    </RadioGroup>
+    <View
+        android:id="@+id/gray_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/area_tab"
+        android:background="@color/line_gray"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/gray_line">
+        <ListView
+            android:id="@+id/frg_green_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:divider="#f0f0f0"
+            android:dividerHeight="2dp"/>
+        <RadioGroup
+            android:id="@+id/venue_selector_district_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:visibility="gone">
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/venue_selector_category_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:orientation="vertical"
+            android:visibility="gone">
+        </RadioGroup>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" >
+        android:layout_alignParentBottom="true">
 
-        <include layout="@layout/frm_navigation_bar" />
+        <include layout="@layout/frm_navigation_bar"/>
     </LinearLayout>
 
 </RelativeLayout>
