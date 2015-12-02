@@ -62,7 +62,8 @@
         android:hardwareAccelerated="true"
         android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Black">
+        android:theme="@android:style/Theme.Light.NoTitleBar"
+    >
 
         <!-- 百度地图 -->
         <service
@@ -145,6 +146,16 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NoTitle"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
+
+        <activity
+            android:name="com.ifootball.app.activity.stand.DetailsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NoTitle"
+            android:windowSoftInputMode="adjustResize|adjustUnspecified|stateHidden">
+        </activity>
+
+
         <service android:name="com.ifootball.app.androidservice.LocationService"/>
     </application>
 

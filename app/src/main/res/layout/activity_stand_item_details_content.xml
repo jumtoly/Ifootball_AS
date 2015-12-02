@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="5dp"
+              android:layout_marginTop="5dp"
+              android:background="@color/white"
+              android:descendantFocusability="blocksDescendants"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <com.ifootball.app.framework.widget.CircleImageView
+            android:id="@+id/item_rostrum_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/app_icon"
+            app:border_color="@color/bg"
+            app:border_width="2dp"/>
+
+        <TextView
+            android:id="@+id/item_rostrum_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_toRightOf="@id/item_rostrum_icon"
+            android:padding="5dp"
+            android:text="刘巍"/>
+
+        <TextView
+            android:id="@+id/item_rostrum_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="2dp"
+            android:padding="5dp"
+            android:text="3天前"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:id="@+id/item_rostrum_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_rostrum_name"
+            android:layout_toRightOf="@id/item_rostrum_icon"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="2dp"
+                android:src="@mipmap/ico_comment"/>
+
+            <TextView
+                android:id="@+id/item_rostrum_comment_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="568"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/item_rostrum_assists"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_rostrum_name"
+            android:layout_toRightOf="@id/item_rostrum_comment"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="2dp"
+                android:src="@mipmap/ico_assist"/>
+
+            <TextView
+                android:id="@+id/item_rostrum_assists_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="567"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/item_rostrum_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="5月8日黑脚队外战比赛照片，比分9:05月8日黑脚队外战比赛照片，比分9:0"/>
+
+    <com.ifootball.app.framework.widget.release.NoScrollBarGridView
+        android:id="@+id/item_rostrum_image_gridview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:numColumns="4"
+        android:visibility="gone"/>
+
+    <FrameLayout
+        android:id="@+id/item_rostrum_fl"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:visibility="gone">
+
+        <VideoView
+            android:id="@+id/item_rostrum_vv"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/item_rostrum_videobg"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/ico_video"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/item_rostrum_paly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/ico_video"
+            android:visibility="gone"/>
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/item_rostrum_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ico_sign"
+            android:text="成都.华阳滨河路球场"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_rostrum_address"
+            android:text="圈出了我,三圣花乡,卡西,光头,双流梅西"
+            android:textSize="12sp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/item_rostrum_operation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="5dp"
+            android:src="@mipmap/ico_shoes"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/ico_arrow"/>
+
+        <TextView
+            android:id="@+id/item_rostrum_operation_zan"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radius_graybg"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:padding="5dp"
+            android:text="1244"/>
+    </LinearLayout>
+
+</LinearLayout>
