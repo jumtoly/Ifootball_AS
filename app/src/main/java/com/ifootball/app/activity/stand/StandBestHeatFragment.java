@@ -21,6 +21,7 @@ import com.ifootball.app.entity.stand.StandInfo;
 import com.ifootball.app.framework.adapter.MyDecoratedAdapter;
 import com.ifootball.app.framework.content.CBCollectionResolver;
 import com.ifootball.app.framework.content.CollectionStateObserver;
+import com.ifootball.app.util.IntentUtil;
 import com.ifootball.app.webservice.ServiceException;
 import com.ifootball.app.webservice.stand.StandService;
 
@@ -72,10 +73,10 @@ public class StandBestHeatFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-              /*  Intent intent = new Intent(getActivity(), DetailsActivity.class);
-                intent.putExtra("SYSNO", mStandInfo.get(position - 1)
-                        .getSysNo());
-                startActivity(intent);*/
+                Bundle bundle = new Bundle();
+                bundle.putInt(DetailsActivity.SYSNO, ((StandInfo) parent.getSelectedItem()).getSysNo());
+                IntentUtil.redirectToNextActivity(getActivity(), DetailsActivity.class, bundle);
+
 
             }
         });
