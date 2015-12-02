@@ -3,6 +3,8 @@ package com.ifootball.app.adapter.stand;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.net.Uri;
@@ -27,16 +29,15 @@ import com.ifootball.app.entity.stand.DynamicInfo;
 import com.ifootball.app.entity.stand.StandInfo;
 import com.ifootball.app.framework.adapter.MyDecoratedAdapter;
 import com.ifootball.app.framework.widget.CircleImageView;
+import com.ifootball.app.framework.widget.release.NoScrollBarGridView;
 import com.ifootball.app.util.ImageLoaderUtil;
+import com.ifootball.app.util.IntentUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StandPage2DAdapter extends MyDecoratedAdapter<StandInfo> {
 
-    public static final String SIGN_ROSTRUM_POSITION = "sign_rostrum_position";
-    public static final String SIGN_ROSTRUM_BUNDLE = "sign_rostrum_bundle";
-    public static final String SIGN_ROSTRUM_IMAGES = "sign_rostrum_images";
 
     private LayoutInflater mInflater;
     private List<StandInfo> mDatas;
@@ -95,7 +96,7 @@ public class StandPage2DAdapter extends MyDecoratedAdapter<StandInfo> {
         holder.icon = (CircleImageView) convertView.findViewById(R.id.item_rostrum_icon);
 
         holder.name = (TextView) convertView.findViewById(R.id.item_rostrum_name);
-        holder.imageViews = (GridView) convertView.findViewById(R.id.item_rostrum_image_gridview);
+        holder.imageViews = (NoScrollBarGridView) convertView.findViewById(R.id.item_rostrum_image_gridview);
         holder.operation = (LinearLayout) convertView.findViewById(R.id.item_rostrum_operation);
         holder.operation.setVisibility(View.GONE);
         holder.comment = (TextView) convertView.findViewById(R.id.item_rostrum_comment_num);
@@ -106,6 +107,8 @@ public class StandPage2DAdapter extends MyDecoratedAdapter<StandInfo> {
         holder.playVideo = (ImageView) convertView.findViewById(R.id.item_rostrum_paly);
         holder.fl = (FrameLayout) convertView.findViewById(R.id.item_rostrum_fl);
         holder.videoBgView = (ImageView) convertView.findViewById(R.id.item_rostrum_videobg);
+
+        holder.imageViews.setSelector(new ColorDrawable(Color.TRANSPARENT));
     }
 
     private void settingHoler(final int currentPosition, final MyViewHolder holder, int position) {
@@ -152,22 +155,23 @@ public class StandPage2DAdapter extends MyDecoratedAdapter<StandInfo> {
             holder.playVideo.setVisibility(View.GONE);
             holder.fl.setVisibility(View.GONE);
             holder.videoBgView.setVisibility(View.GONE);
-           /* holder.imageViews.setAdapter(new GridImage2DAdapter(mContext, mStandInfo.getPicUrls(), false));
+            if (mStandInfo.getPicUrls() == null || mStandInfo.getPicUrls().size() < 0) {
+                return;
+            }
+            holder.imageViews.setAdapter(new GridImage2DAdapter(mContext, mStandInfo.getPicUrls(), false));
             holder.imageViews.setOnItemClickListener(new OnItemClickListener() {
 
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
 
-                    Intent intent = new Intent(mContext, SeeImageActivity.class);
                     Bundle bundle = new Bundle();
-                    bundle.putInt(SIGN_ROSTRUM_POSITION, currentPosition);
-                    bundle.putStringArrayList(SIGN_ROSTRUM_IMAGES, (ArrayList<String>) mStandInfo.getPicUrls());
-                    intent.putExtra(SIGN_ROSTRUM_BUNDLE, bundle);
-                    mContext.startActivity(intent);
+                    bundle.putInt(SeeImageActivity.SIGN_STAND_POSITION, position);
+                    bundle.putStringArrayList(SeeImageActivity.SIGN_STAND_IMAGES, (ArrayList<String>) mStandInfo.getPicUrls());
+                    IntentUtil.redirectToNextActivity(mContext, SeeImageActivity.class, bundle);
                     ((Activity) mContext).overridePendingTransition(R.anim.enter_scale, R.anim.out_scale);
                 }
-            });*/
+            });
         }
     }
 
@@ -178,7 +182,7 @@ public class StandPage2DAdapter extends MyDecoratedAdapter<StandInfo> {
         TextView comment;
         TextView assists;
         TextView content;
-        GridView imageViews;
+        NoScrollBarGridView imageViews;
         TextView address;
         VideoView videoView;
         ImageView playVideo;

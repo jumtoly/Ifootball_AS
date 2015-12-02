@@ -15,6 +15,7 @@ import com.ifootball.app.activity.release.ReleaseImageActivity;
 import com.ifootball.app.entity.release.PictureInfo;
 import com.ifootball.app.framework.widget.HackyViewPager;
 import com.ifootball.app.framework.widget.release.ImageLoader;
+import com.ifootball.app.util.ImageLoaderUtil;
 import com.ifootball.app.util.IntentUtil;
 
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ public class SeeImageActivity extends Activity {
     private static final String ISLOCKED_ARG = "isLocked";
     public static final int REQUEST_SIGN = 201;
     private static final String SIGN_CAMERA_REQUEST_DATA = "SIGN_CAMERA_REQUEST_DATA";
+    public static final String SIGN_STAND_POSITION = "SIGN_STAND_POSITION";
+    public static final String SIGN_STAND_IMAGES = "SIGN_STAND_IMAGES";
+
 
     private ViewPager mViewPager;
 
@@ -42,7 +46,7 @@ public class SeeImageActivity extends Activity {
 
     private int mPosition;
 
-    private ArrayList<String> mPics = new ArrayList<String>();
+    private ArrayList<String> mPics;
     private ArrayList<PictureInfo> mPictures; //是详情页面发过来的预览图
 
     @Override
@@ -51,8 +55,7 @@ public class SeeImageActivity extends Activity {
         setContentView(R.layout.activity_seeimage);
         mViewPager = (HackyViewPager) findViewById(R.id.see_image_pager);
         setContentView(mViewPager);
-
-        mPics.add(getIntent().getStringExtra(SIGN_CAMERA_POSITION));
+        getIntentData();
         mViewPager.setAdapter(new SamplePagerAdapter(this));
         mViewPager.setCurrentItem(mPosition);
         if (savedInstanceState != null) {
@@ -60,6 +63,12 @@ public class SeeImageActivity extends Activity {
                     false);
             ((HackyViewPager) mViewPager).setLocked(isLocked);
         }
+    }
+
+    public void getIntentData() {
+        mPosition = getIntent().getIntExtra(SIGN_STAND_POSITION, 0);
+//        mPics = getIntent().getStringArrayExtra(SIGN_CAMERA_POSITION);
+        mPics = (ArrayList<String>) getIntent().getSerializableExtra(SIGN_STAND_IMAGES);
     }
 
     class SamplePagerAdapter extends PagerAdapter {
@@ -79,7 +88,7 @@ public class SeeImageActivity extends Activity {
         }
 
         @Override
-        public View instantiateItem(ViewGroup container, int position) {
+        public View instantiateItem(ViewGroup container, final int position) {
             DisplayMetrics displayMetrics = new DisplayMetrics();
             getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
             PhotoView photoView = new PhotoView(container.getContext());
@@ -87,24 +96,21 @@ public class SeeImageActivity extends Activity {
                     displayMetrics.heightPixels);
             photoView.setLayoutParams(params);
             //TODO 拍照后的图片显示
-            ImageLoader.getInstance().loadImage(mPics.get(0), photoView);
-            /*if (mPics != null) {
-				ImageLoaderUtil.displayImage(
-						mPics.get(position).replace("p200", "Original"),
-						photoView, 0);
-			} else if (mPictures != null) {
-				ImageLoaderUtil.displayImage(mPictures.get(position)
-						.getPicUrl(), photoView, 0);
-			}*/
+//            ImageLoader.getInstance().loadImage(mPics.get(0), photoView);
+            if (mPics != null && mPics.size() > 0) {
+                ImageLoaderUtil.displayImage(
+                        mPics.get(position).replace("p200", "Original"),
+                        photoView, 0);
+            } else if (mPictures != null) {
+                ImageLoaderUtil.displayImage(mPictures.get(position)
+                        .getPicUrl(), photoView, 0);
+            }
 
             photoView.setOnViewTapListener(new PhotoViewAttacher.OnViewTapListener() {
 
                 @Override
                 public void onViewTap(View arg0, float arg1, float arg2) {
-                    Bundle mBundle = new Bundle();
-                    mBundle.putString("SIGN_CAMERA_REQUEST_DATA", mPics.get(0));
-                    IntentUtil.redirectToMainActivity(mContext,
-                            ReleaseImageActivity.class, mBundle, REQUEST_SIGN);
+                    ((Activity) mContext).finish();
                     ((Activity) mContext).overridePendingTransition(
                             R.anim.see_enter_scale, R.anim.see_out_scale);
                 }
