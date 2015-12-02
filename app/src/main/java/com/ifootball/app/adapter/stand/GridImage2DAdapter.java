@@ -68,13 +68,13 @@ public class GridImage2DAdapter extends BaseAdapter {
         } else {
             vHodler = (ViewHodler) convertView.getTag();
         }
-        if (isDetails) {
+       /* if (isDetails) {
             ImageLoaderUtil.displayImage(mBitmaps.get(position).getPicUrl(),
                     vHodler.imageView, R.mipmap.app_icon);
-        } else {
-            ImageLoaderUtil.displayImage(mPics.get(position),
-                    vHodler.imageView, R.mipmap.app_icon);
-        }
+        } else {*/
+        ImageLoaderUtil.displayImage(mPics.get(position),
+                vHodler.imageView, R.mipmap.app_icon);
+//        }
 
         return convertView;
     }

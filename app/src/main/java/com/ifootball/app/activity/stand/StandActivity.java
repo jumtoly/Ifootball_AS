@@ -89,8 +89,7 @@ public class StandActivity extends BaseActivity implements OnClickListener,
         newsBtn.setOnClickListener(this);
         bestHeatBtn.setOnClickListener(this);
         standPlusBtn.setOnClickListener(this);
-//		contentViewPager.addOnPageChangeListener(this);
-
+        contentViewPager.setOffscreenPageLimit(1);
         contentViewPager.setOnPageChangeListener(this);
     }
 

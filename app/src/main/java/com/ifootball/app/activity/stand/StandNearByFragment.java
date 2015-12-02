@@ -24,7 +24,7 @@ import com.ifootball.app.webservice.stand.StandService;
 
 import java.io.IOException;
 
-public class StandNearByFragment extends Fragment {
+public class StandNearByFragment extends BaseFragment {
     private static final int pageSize = 10;
 
     private int pageIndex = 0;
@@ -36,12 +36,34 @@ public class StandNearByFragment extends Fragment {
     private DynamicInfo mDynamicInfo;
     private StandPage2DAdapter mAdapter;
 
+    private int mCurIndex = -1;
+    /**
+     * 标志位，标志已经初始化完成
+     */
+    private boolean isPrepared;
+    /**
+     * 是否已被加载过一次，第二次就不再去请求数据了
+     */
+    private boolean mHasLoadedOnce;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.activity_stand_fragment_content, null);
-        findView(view);
-        getData();
+        if (view == null) {
+
+            view = inflater.inflate(R.layout.activity_stand_fragment_content, null);
+            findView(view);
+            isPrepared = true;
+            lazyLoad();
+        }
+
+
+        ViewGroup parent = (ViewGroup) view.getParent();
+        if (parent != null) {
+            parent.removeView(view);
+        }
+
+
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -58,8 +80,11 @@ public class StandNearByFragment extends Fragment {
     }
 
 
-    protected void getData() {
-
+    @Override
+    protected void lazyLoad() {
+        if (!isPrepared || !isVisible || mHasLoadedOnce) {
+            return;
+        }
         mResolver = new CBCollectionResolver<StandInfo>() {
             @Override
             public HasCollection<StandInfo> query()
@@ -70,6 +95,7 @@ public class StandNearByFragment extends Fragment {
                 if (mDynamicInfo != null
                         && mDynamicInfo.getList() != null
                         && mDynamicInfo.getList().size() > 0) {
+                    mHasLoadedOnce = true;
                     pageIndex = pageIndex + 1;
                 }
 
@@ -85,6 +111,8 @@ public class StandNearByFragment extends Fragment {
         observer.setAdapters(mAdapter);
         mAdapter.startQuery(mResolver);
         mListView.setOnScrollListener(new MyDecoratedAdapter.ListScrollListener(mAdapter, mResolver));
+
+
     }
 
 
@@ -95,11 +123,5 @@ public class StandNearByFragment extends Fragment {
 
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        pageIndex = 0;
-        Log.i("TEST", "NEARBY");
-    }
 
 }
