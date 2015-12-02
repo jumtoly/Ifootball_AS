@@ -74,9 +74,8 @@ public class StandRostrumFragment extends BaseFragment {
                                     int position, long id) {
 
                 Bundle bundle = new Bundle();
-                bundle.putInt(DetailsActivity.SYSNO, ((StandInfo) parent.getSelectedItem()).getSysNo());
+                bundle.putInt(DetailsActivity.SYSNO, ((StandInfo) mListView.getAdapter().getItem(position)).getSysNo());
                 IntentUtil.redirectToNextActivity(getActivity(), DetailsActivity.class, bundle);
-
             }
         });
         return view;

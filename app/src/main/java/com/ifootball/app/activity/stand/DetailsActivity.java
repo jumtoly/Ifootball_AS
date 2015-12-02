@@ -1,7 +1,5 @@
 package com.ifootball.app.activity.stand;
 
-import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -12,9 +10,7 @@ import com.ifootball.app.entity.BizException;
 import com.ifootball.app.entity.stand.UserDetailsInfo;
 import com.ifootball.app.framework.content.CBContentResolver;
 import com.ifootball.app.framework.content.ContentStateObserver;
-import com.ifootball.app.framework.widget.NavigationHelper;
 import com.ifootball.app.framework.widget.TitleBarView;
-import com.ifootball.app.util.SystemBarTintManager;
 import com.ifootball.app.webservice.ServiceException;
 import com.ifootball.app.webservice.stand.StandService;
 
@@ -35,12 +31,14 @@ public class DetailsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        putContentView(R.layout.activity_details, "", false);
 
+        putContentView(R.layout.activity_details, "", true, false);
         TitleBarView view = (TitleBarView) findViewById(R.id.details_titlebar);
+
         view.setViewData(getResources().getDrawable(R.mipmap.ico_backspace),
-                "动态详情", null);
+                "动态详情", getResources().getDrawable(R.mipmap.ico_submit));
         view.setActivity(this);
+
 
         mSysoNo = getIntent().getIntExtra(SYSNO, 0);
 
@@ -49,14 +47,6 @@ public class DetailsActivity extends BaseActivity {
         getData();
     }
 
-    private void initSystemBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            SystemBarTintManager tintManager = new SystemBarTintManager(this);
-            tintManager.setStatusBarTintEnabled(true);
-            tintManager.setStatusBarTintResource(R.color.top_bar_bg);
-
-        }
-    }
 
     private void findView() {
         mListView = (ListView) findViewById(R.id.details_listview);

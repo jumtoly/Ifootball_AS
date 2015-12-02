@@ -13,7 +13,7 @@ public class FoundActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         putContentView(R.layout.activity_found, "", NavigationHelper.FOUND,
-                true);
+                true, true);
     }
 
     @Override

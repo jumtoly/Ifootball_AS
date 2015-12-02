@@ -3,7 +3,9 @@
              android:layout_height="match_parent"
              android:background="@color/bg">
 
+
     <LinearLayout android:id="@+id/details_layout"
+                  xmlns:android="http://schemas.android.com/apk/res/android"
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:fitsSystemWindows="true"
@@ -67,7 +69,7 @@
                 android:background="@drawable/radius_redboder"
                 android:text="发表"
                 android:textColor="@color/red"/>
-        </LinearLayout>
+    </LinearLayout>
 
     </LinearLayout>
     <include

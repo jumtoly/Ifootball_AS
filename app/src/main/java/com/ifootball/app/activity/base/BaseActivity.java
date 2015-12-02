@@ -3,6 +3,7 @@ package com.ifootball.app.activity.base;
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -46,7 +47,7 @@ public class BaseActivity extends FragmentActivity {
 
     }
 
-    private void setSystemBar() {
+    private void setSystemBar(boolean hasTab) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
             setTranslucentStatus(true);
@@ -57,8 +58,16 @@ public class BaseActivity extends FragmentActivity {
             //					.getChildAt(0);
             View view = getWindow().getDecorView().findViewById(
                     android.R.id.content);
-            int statusBarHeight = getStatusBarHeight();
-            view.setPadding(0, statusBarHeight, 0, 0);
+            if (hasTab) {
+                int statusBarHeight = getStatusBarHeight();
+                view.setPadding(0, statusBarHeight, 0, 0);
+            } else {
+                Rect frame = new Rect();
+                getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+                int statusBarHeight = frame.top;
+                view.setPadding(0, statusBarHeight, 0, 0);
+            }
+
 
         }
     }
@@ -97,7 +106,7 @@ public class BaseActivity extends FragmentActivity {
      *                  NavigationHelper.MORE
      */
     public void putContentView(int layoutId, String pageTitle, int tab,
-                               boolean isSetBar) {
+                               boolean isSetBar, boolean hasTab) {
 
         Boolean noTitle = pageTitle == null || pageTitle.equals("");
         mCustomTitleManager = new CustomTitleManager(this, noTitle);
@@ -117,7 +126,7 @@ public class BaseActivity extends FragmentActivity {
             unregisterReceiver();
         }
         if (isSetBar) {
-            setSystemBar();
+            setSystemBar(hasTab);
         }
 
     }
@@ -154,9 +163,9 @@ public class BaseActivity extends FragmentActivity {
         }
     }
 
-    public void putContentView(int layoutId, String pageTitle, boolean isSetBar) {
+    public void putContentView(int layoutId, String pageTitle, boolean isSetBar, boolean hasTab) {
 
-        putContentView(layoutId, pageTitle, NavigationHelper.DEFAULT, isSetBar);
+        putContentView(layoutId, pageTitle, NavigationHelper.DEFAULT, isSetBar, hasTab);
     }
 
     public void putContentView(int layoutId, int pageTitle) {

@@ -18,6 +18,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.ifootball.app.activity.base.BaseActivity;
 import com.ifootball.app.activity.release.ReleaseImageActivity;
@@ -48,11 +49,13 @@ public class StandActivity extends BaseActivity implements OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        putContentView(R.layout.activity_stand, "", NavigationHelper.STAND, true);
+        putContentView(R.layout.activity_stand, "", NavigationHelper.STAND, true, true);
+
         findview();
         initManager(savedInstanceState);
         inteViewPager();
     }
+
 
     private void initManager(Bundle savedInstanceState) {
 

@@ -15,7 +15,7 @@ public class GreenActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         putContentView(R.layout.activity_green, "", NavigationHelper.GREEN,
-                true);
+                true, true);
     }
 
     @Override

@@ -144,7 +144,7 @@ public class ReleaseImageActivity extends BaseActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        putContentView(R.layout.activity_release_image, "", true);
+        putContentView(R.layout.activity_release_image, "", true, true);
         TitleBarView view = (TitleBarView) findViewById(R.id.release_image_titlebar);
 
         view.setViewData(getResources().getDrawable(R.mipmap.ico_backspace),

@@ -71,7 +71,7 @@ public class StandNewsFragment extends BaseFragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 Bundle bundle = new Bundle();
-                bundle.putInt(DetailsActivity.SYSNO, ((StandInfo) parent.getSelectedItem()).getSysNo());
+                bundle.putInt(DetailsActivity.SYSNO, ((StandInfo) mListView.getAdapter().getItem(position)).getSysNo());
                 IntentUtil.redirectToNextActivity(getActivity(), DetailsActivity.class, bundle);
 
 
