@@ -68,7 +68,7 @@ public class VenueBannerAdapter extends PagerAdapter {
     public Object instantiateItem(View collection, final int position) {
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.activity__green_venue_detail_banner_imageview, null, false);
+        View view = inflater.inflate(R.layout.activity_green_venue_detail_banner_imageview, null, false);
         ImageView cellImageView = (ImageView) view
                 .findViewById(R.id.banner_cell_imageview);
         String imageUrl = "";

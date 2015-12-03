@@ -9,15 +9,15 @@ public class AreaInfo implements Serializable {
 	 */
 	private static final long serialVersionUID = -1473986204578652170L;
 
-	public int SysNo;
+	private int SysNo;
 
-	public int CitySysNo;
+	private int CitySysNo;
 
-	public String CityName;
+	private String CityName;
 
-	public String DistrictName;
+	private String DistrictName;
 
-	public int Priority;
+	private int Priority;
 
 	public int getSysNo() {
 		return SysNo;

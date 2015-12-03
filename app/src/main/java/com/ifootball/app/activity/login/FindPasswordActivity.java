@@ -14,9 +14,9 @@ import com.ifootball.app.framework.widget.MyToast;
 import com.ifootball.app.framework.widget.TitleBarView;
 import com.ifootball.app.util.MyAsyncTask;
 import com.ifootball.app.util.StringUtil;
-import com.ifootball.app.webservice.CommonService;
 import com.ifootball.app.webservice.CustomerService;
 import com.ifootball.app.webservice.ServiceException;
+import com.ifootball.app.webservice.green.GreenService;
 import com.neweggcn.lib.json.JsonParseException;
 
 import java.io.IOException;
@@ -125,9 +125,7 @@ public class FindPasswordActivity extends BaseActivity implements
                 @Override
                 public ResultData<String> callService() throws IOException,
                         JsonParseException, BizException, ServiceException {
-                    return new CommonService()
-                            .sendValidateCode(mTelphoneEditText.getText()
-                                    .toString());
+                    return new GreenService().sendValidateCode(mTelphoneEditText.getText().toString());
                 }
 
                 @Override

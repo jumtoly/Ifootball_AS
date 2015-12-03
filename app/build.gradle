@@ -21,6 +21,9 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+    defaultConfig {
+        multiDexEnabled true
+    }
 }
 
 dependencies {
@@ -30,3 +33,5 @@ dependencies {
     compile files('libs/commons-codec-1.4.jar')
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }
+
+configurations { all*.exclude group: 'com.android.support', module: 'support-v4' }
