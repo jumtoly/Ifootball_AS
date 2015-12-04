@@ -1,113 +1,91 @@
-package com.ifootball.app.util;
+package com.ifootball.app.utils;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.net.Uri;
-import android.os.Environment;
 import android.os.Handler;
-import android.os.Message;
 
 import com.ifootball.app.baseapp.BaseApp;
-import com.ifootball.app.entity.BizException;
-import com.ifootball.app.entity.ResultData;
-import com.ifootball.app.entity.VersionInfo;
-import com.ifootball.app.framework.cache.MySharedCache;
-import com.ifootball.app.util.MyAsyncTask.OnError;
-import com.ifootball.app.webservice.ServiceException;
-import com.ifootball.app.webservice.VersionService;
-import com.neweggcn.lib.json.JsonParseException;
 
 public class VersionUtil {
-	
-	private static final String VERSION_UTIL_IGNORE_CODE_KEY="VERSION_UTIL_IGNORE_CODE"; 
-	private static final int DOWNLOAD_MAX_PROGRESS_LENGTH_KEY=10;
-	private static final int DOWNLOAD_PROGRESS_LENGTH_KEY=11;
-	private static final String PKG_NAME="kjt-android-phone-release.apk";
 
-	private Handler mHandler;
-	public ProgressDialog mProgressDialog;
-	private boolean mIsDownload=true;
-	private String mCacheRoot;
-	private boolean mIsUpdate=false;
-	private VersionInfo mVersionInfo;
-	private static VersionUtil mVersionUtil;
-	private Context mContext;
-	private static boolean mRedirectIgnore=false;//跳过忽略
-	
-	public VersionUtil(){
-		setCacheRoot();
+    private static final String VERSION_UTIL_IGNORE_CODE_KEY = "VERSION_UTIL_IGNORE_CODE";
+    private static final int DOWNLOAD_MAX_PROGRESS_LENGTH_KEY = 10;
+    private static final int DOWNLOAD_PROGRESS_LENGTH_KEY = 11;
+    private static final String PKG_NAME = "kjt-android-phone-release.apk";
+
+    private Handler mHandler;
+    public ProgressDialog mProgressDialog;
+    private boolean mIsDownload = true;
+    private String mCacheRoot;
+    private boolean mIsUpdate = false;
+    //	private VersionInfo mVersionInfo;
+    private static VersionUtil mVersionUtil;
+    private Context mContext;
+    private static boolean mRedirectIgnore = false;//跳过忽略
+
+	/*public VersionUtil(){
+        setCacheRoot();
 		setHandler();
-	}
+	}*/
+
+    public static VersionUtil getInstance() {
+        if (mVersionUtil == null) {
+            mVersionUtil = new VersionUtil();
+        }
+
+        return mVersionUtil;
+    }
+
+    public boolean IsUpdate() {
+        return mIsUpdate;
+    }
+
+    /**
+     * 获取当前版本号
+     *
+     * @return
+     */
+    public static String getCurrentVersion() {
+        String clientVersion = null;
+        try {
+            clientVersion = BaseApp.instance().getPackageManager().getPackageInfo(
+                    BaseApp.instance().getPackageName(), 0).versionName;
+        } catch (NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return clientVersion;
+    }
 	
-	public static VersionUtil getInstance() {
-		if (mVersionUtil==null) {
-			mVersionUtil=new VersionUtil();
-		}
-		
-		return mVersionUtil;
-	}
-	
-	public boolean IsUpdate(){
-		return mIsUpdate;
-	}
-	
-	/**
-	 * 获取当前版本号
-	 * @return
-	 */
-	public static String getCurrentVersion() {
-		String clientVersion = null;
-		try {
-			clientVersion = BaseApp.instance().getPackageManager().getPackageInfo(
-					BaseApp.instance().getPackageName(), 0).versionName;
-		} catch (NameNotFoundException e) {
-			e.printStackTrace();
-		}
-		return clientVersion;
-	}
-	
-	/**
-	 * 获取是否忽略当前版本
-	 */
+/*	*//**
+     * 获取是否忽略当前版本
+     *//*
 	public static boolean isIgnore(String serveVersionCode){
 		String cacheVersionCode=MySharedCache.get(VERSION_UTIL_IGNORE_CODE_KEY, "0");
-		return formatVersionCode(cacheVersionCode) == formatVersionCode(serveVersionCode);
-
+		if (formatVersionCode(cacheVersionCode)==formatVersionCode(serveVersionCode)) {
+			return true;
+		}
+		
+		return false;
 	}
 	
-	/**
-	 * 设置忽略
-	 */
+	*//**
+     * 设置忽略
+     *//*
 	public static void setIgnore(String serveVersionCode) {
 		MySharedCache.put(VERSION_UTIL_IGNORE_CODE_KEY, serveVersionCode);
 	}
 	
-	/**
-	 * 跳过忽略
-	 */
+	*//**
+     * 跳过忽略
+     *//*
 	public static void redirectIgnore() {
 		mRedirectIgnore=true;
 	}
 	
-	/**
-	 * 检查更新
-	 */
+	*//**
+     * 检查更新
+     *//*
 	public void checkVersionUpdate() {
 		mHandler.postDelayed(new Runnable() {
 			
@@ -218,7 +196,7 @@ public class VersionUtil {
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
 //		BaseApp.instance().startActivity(intent);
-		mContext.startActivity(intent);
+		((Activity)mContext).startActivity(intent);
 	}
 	
 	public void update(final Context context) {
@@ -321,9 +299,9 @@ public class VersionUtil {
 		createDirectory();
 	}
 	
-	/**
-	 * 创建目录
-	 */
+	*//**
+     * 创建目录
+     *//*
 	private void createDirectory() {
 		File file = new File(mCacheRoot);
 		// 判断文件目录是否存在
@@ -332,9 +310,9 @@ public class VersionUtil {
 		}
 	}
 	
-	/**
-	 * 删除app
-	 */
+	*//**
+     * 删除app
+     *//*
 	private void delFile() {
 		File apkFile = new File(mCacheRoot, PKG_NAME);
 		if (apkFile.exists()) {
@@ -353,5 +331,5 @@ public class VersionUtil {
 	public interface OnCheckUpdate{
 		void beforeCallService();
 		void afterCallService(VersionInfo versionInfo);
-	}
+	}*/
 }

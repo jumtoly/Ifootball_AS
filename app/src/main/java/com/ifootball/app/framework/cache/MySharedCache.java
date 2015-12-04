@@ -3,7 +3,7 @@ package com.ifootball.app.framework.cache;
 import android.app.Activity;
 import android.content.SharedPreferences;
 
-import com.ifootball.app.base.BaseApp;
+import com.ifootball.app.baseapp.BaseApp;
 
 public class MySharedCache {
 

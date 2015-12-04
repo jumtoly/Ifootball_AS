@@ -57,7 +57,7 @@
 
 
     <application
-        android:name="com.ifootball.app.base.BaseApp"
+        android:name="com.ifootball.app.baseapp.BaseApp"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/app_icon"

@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
-import com.ifootball.app.base.BaseApp;
 import com.ifootball.app.entity.SettingsUtil;
 import com.ifootball.app.framework.cache.MySharedCache;
 import com.ifootball.app.listener.CountDownTimerListener;

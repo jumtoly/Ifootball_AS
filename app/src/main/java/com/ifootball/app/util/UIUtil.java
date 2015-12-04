@@ -5,7 +5,7 @@ import android.content.Context;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import com.ifootball.app.base.BaseApp;
+import com.ifootball.app.baseapp.BaseApp;
 
 public class UIUtil {
 	

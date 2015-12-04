@@ -1,33 +1,20 @@
-package com.ifootball.app.base;
+package com.ifootball.app.baseapp;
 
 import android.app.Application;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Vibrator;
-import android.util.Log;
-import android.widget.TextView;
 
-import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
-import com.baidu.location.Poi;
 import com.ifootball.app.R;
 import com.ifootball.app.androidservice.LocationService;
-import com.ifootball.app.common.Common;
 import com.ifootball.app.framework.cache.MyFileCache;
-import com.ifootball.app.framework.cache.MySharedCache;
 import com.ifootball.app.framework.http.BetterHttp;
 import com.ifootball.app.util.CrashHandler;
 import com.ifootball.app.util.ImageUrlUtil;
 import com.ifootball.app.util.VersionUtil;
-import com.ifootball.app.R;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-
-import java.util.List;
 
 public class BaseApp extends Application {
     private static String mUserAgent;
@@ -48,8 +35,7 @@ public class BaseApp extends Application {
             initImageLoader(this);
             MyFileCache.install(getApplicationContext());
 
-            mUserAgent = getResources().getString(R.string.user_agent,
-                    VersionUtil.getCurrentVersion());
+            mUserAgent = getResources().getString(R.string.user_agent, VersionUtil.getCurrentVersion());
 
             setupBetterHttp();
 

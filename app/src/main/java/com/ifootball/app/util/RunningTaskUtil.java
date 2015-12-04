@@ -8,7 +8,7 @@ import android.app.ActivityManager.RunningTaskInfo;
 import android.content.ComponentName;
 import android.content.SharedPreferences;
 
-import com.ifootball.app.base.BaseApp;
+import com.ifootball.app.baseapp.BaseApp;
 
 public class RunningTaskUtil {
 	

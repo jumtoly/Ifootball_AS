@@ -1,10 +1,8 @@
 package com.ifootball.app.activity.green;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.os.Message;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,21 +18,15 @@ import android.widget.TextView;
 
 import com.ifootball.app.R;
 import com.ifootball.app.activity.base.BaseActivity;
-import com.ifootball.app.adapter.stand.Details2Dadapter;
 import com.ifootball.app.common.Common;
 import com.ifootball.app.entity.AreaInfo;
 import com.ifootball.app.entity.BizException;
-import com.ifootball.app.entity.HasCollection;
 import com.ifootball.app.entity.VenueSearchCriteria;
-import com.ifootball.app.entity.VenueSearchResultInfo;
 import com.ifootball.app.entity.VenueSearchResultItem;
-import com.ifootball.app.entity.stand.UserDetailsInfo;
 import com.ifootball.app.framework.adapter.MyDecoratedAdapter;
 import com.ifootball.app.framework.cache.MySharedCache;
 import com.ifootball.app.framework.content.CBCollectionResolver;
-import com.ifootball.app.framework.content.CBContentResolver;
 import com.ifootball.app.framework.content.CollectionStateObserver;
-import com.ifootball.app.framework.content.ContentStateObserver;
 import com.ifootball.app.framework.widget.NavigationHelper;
 import com.ifootball.app.util.ExitAppUtil;
 import com.ifootball.app.util.ImageLoaderUtil;
@@ -42,7 +34,6 @@ import com.ifootball.app.util.IntentUtil;
 import com.ifootball.app.util.MyAsyncTask;
 import com.ifootball.app.webservice.ServiceException;
 import com.ifootball.app.webservice.green.GreenService;
-import com.ifootball.app.webservice.stand.StandService;
 import com.neweggcn.lib.json.JsonParseException;
 
 import java.io.IOException;

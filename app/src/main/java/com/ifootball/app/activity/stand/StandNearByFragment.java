@@ -9,7 +9,7 @@ import android.widget.ListView;
 
 import com.ifootball.app.R;
 import com.ifootball.app.adapter.stand.StandPage2DAdapter;
-import com.ifootball.app.base.BaseFragment;
+import com.ifootball.app.baseapp.BaseFragment;
 import com.ifootball.app.common.StandPageTypeEnum;
 import com.ifootball.app.entity.HasCollection;
 import com.ifootball.app.entity.stand.DynamicInfo;
